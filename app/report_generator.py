@@ -54,6 +54,7 @@ def generate_report_pdf(data, client_name, report_date, pdf_path):
     for analysis in data['análise']:
         style = styles['HeadingGray'] if 'forte' not in analysis.get('mensagem', '') else styles['HeadingRed']
         fenomeno = analysis.get('fenomeno', 'Outros')
+        fenomeno = fenomeno if fenomeno != '' else 'Outros'
         if fenomeno == 'Outros':
             outros_analysis.append(analysis)
         else:
