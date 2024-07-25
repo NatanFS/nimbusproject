@@ -41,4 +41,4 @@ def run_tcp_server():
     port = 5784
     logging.info(f"Starting TCP server on port {port}")
     reactor.listenTCP(port, DataReceiverFactory())
-    reactor.run()
+    reactor.run(installSignalHandlers=False)

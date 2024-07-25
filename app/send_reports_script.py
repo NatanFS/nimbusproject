@@ -3,9 +3,9 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import logging.config
 import json
 import argparse
-import logging
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
@@ -15,6 +15,7 @@ from app.report_generator import generate_report_pdf
 from app.email_utils import send_email
 from app.utils import format_date
 import csv
+import yaml
 
 load_dotenv()
 
@@ -23,7 +24,11 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
 
-logging.basicConfig(filename='report.log', level=logging.INFO)
+with open('logging_report.yaml', 'r') as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger('report')
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Generate and send meteorological reports.")
