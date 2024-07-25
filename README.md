@@ -1,4 +1,4 @@
-# Projeto Meteorological Report Generator
+# Projeto Geração de Relatório de Meteorologia
 
 Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos baseados em dados fornecidos em diferentes formatos (JSON, CSV, TXT). Utiliza FastAPI para gerenciamento de endpoints e SQLAlchemy para manipulação do banco de dados.
 
@@ -44,7 +44,9 @@ Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos 
 
     Caso ocorra algum erro, atualize o pip com o seguinte comando:
 
-    ``
+    ```bash
+    pip install --upgrade pip
+    ```
 
 4. Configure as variáveis de ambiente. Seguindo o exemplo do arquivo `.env.example`, crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
 
@@ -56,7 +58,12 @@ Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos 
     SMTP_EMAIL_PORT="587"
     ```
 
-    Para facilitar os testes, preparei um e-mail dedicado somente a esse projeto para realizar os envios. Pode usar os respectivos e-mail e senha: "nimbusproject504@gmail.com", "lmnl ijta ixal osyo". Este será desativado em alguns dias.
+    Para facilitar os testes, preparei um e-mail dedicado somente a esse projeto para realizar os envios. Pode usar as seguintes credenciais:
+
+    E-mail: nimbusproject504@gmail.com
+    Senha: lmnl ijta ixal osyo
+
+    Este e-mail será desativado em alguns dias. 
 
 ## Execução
 
@@ -88,7 +95,7 @@ Os relatórios são salvos localmente na pasta reports/, na raíz do projeto, cr
 
 Para testar a geração dos relatórios, adicionei três aquivos `raw.json`, `raw.txt` e `raw.csv` que podem ser utilizados como fonte de dados. Também há o `report-example.pdf`, um exemplo de relatório já gerado.
 
-Para gerar e enviar relatórios, utilize o script send_reports_script.py. Exemplo de uso:
+Para gerar e enviar relatórios, utilize o script `send_reports_script.py``. Exemplo de uso:
 
 ```bash
 python send_reports_script.py --phones "84999139194,84999139195" --date "2024-01-01T12:00" --raw "path/to/raw.json" --send_email
@@ -96,6 +103,6 @@ python send_reports_script.py --phones "84999139194,84999139195" --date "2024-01
 
 Caso não deseje enviar o relatório por e-mail, remova a flag `--send_email`.
 
-### Logs das aplicações
+## Logs das aplicações
 
-O logs do servidor TCP e da geração de relatórios estão sendo salvos no arquivo `app.log` e `report.log`, respectivamente. Eles serão gerados após a execução do projeto.  
+O logs do servidor TCP e da geração de relatórios estão sendo salvos nos arquivos `app.log` e `report.log`, respectivamente. Eles serão gerados após a execução do projeto.  
