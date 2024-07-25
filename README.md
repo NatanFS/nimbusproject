@@ -1,6 +1,6 @@
 # Projeto Geração de Relatório de Meteorologia
 
-Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos baseados em dados fornecidos em diferentes formatos (JSON, CSV, TXT). Utiliza FastAPI para gerenciamento de endpoints e SQLAlchemy para manipulação do banco de dados.
+Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos baseados em dados fornecidos em diferentes formatos (JSON, CSV, TXT).
 
 ## Funcionalidades
 
