@@ -52,8 +52,8 @@ Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos 
 
     ```env
     DATABASE_URL="sqlite:///./test.db"
-    EMAIL_HOST_USER="seu_email@example.com"
-    EMAIL_HOST_PASSWORD="sua_senha"
+    EMAIL_HOST_USER="nimbusproject504@gmail.com"
+    EMAIL_HOST_PASSWORD="lmnl ijta ixal osyo"
     SMTP_EMAIL_HOST="smtp.example.com"
     SMTP_EMAIL_PORT="587"
     ```
