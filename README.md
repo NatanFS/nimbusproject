@@ -105,8 +105,6 @@ Encerre a conexão TCP com o comando `quit`.
 quit
 ```
 
-A string deve seguir o padrão "Nome,email,telefone,idade".
-
 ### Geração de relatórios
 
 Os relatórios são salvos localmente na pasta reports/, na raíz do projeto, criada após a execução do script. Cada relatório segue o formato `report_TELEFONE.pdf`. 
