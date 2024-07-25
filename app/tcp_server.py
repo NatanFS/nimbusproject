@@ -12,28 +12,36 @@ class DataReceiver(protocol.Protocol):
         logging.info(f"Connection established with {self.transport.getPeer()}")
 
     def dataReceived(self, data):
-        message = data.decode('utf-8')
-        logging.info(f"Data received: {message}")
-        parts = message.split(',')
+        messages = data.decode('utf-8').strip().split('\n')
+        for message in messages:
+            logging.info(f"Data received: {message}")
+            if message.strip().lower() == "quit":
+                self.transport.write(b"Connection closed.\n")
+                self.transport.loseConnection()
+                logging.info(f"Connection closed with {self.transport.getPeer()}")
+                return
 
-        if len(parts) == 4:
-            name, email, phone, age = parts
-            try:
-                age = int(age)
-                db = SessionLocal()
-                client_data = ClientCreate(name=name, email=email, phone=phone, age=age)
-                crud_client.create_client(db, client_data)
-                self.transport.write(b"Ok")
-                db.close()
-                logging.info(f"Received and stored data: {name}, {email}, {phone}, {age}")
-            except Exception as e:
-                self.transport.write(b"Erro ao adicionar cliente")
-                logging.error(f"Error storing data: {e}")
-        else:
-            self.transport.write(b"Error")
-            logging.error("Received data in incorrect format")
-        
-        self.transport.loseConnection()
+            parts = message.split(',')
+
+            if len(parts) == 4:
+                name, email, phone, age = parts
+                try:
+                    age = int(age)
+                    db = SessionLocal()
+                    client_data = ClientCreate(name=name, email=email, phone=phone, age=age)
+                    crud_client.create_client(db, client_data)
+                    self.transport.write(b"Ok\n")
+                    db.close()
+                    logging.info(f"Received and stored data: {name}, {email}, {phone}, {age}")
+                except Exception as e:
+                    self.transport.write(b"Error adding client\n")
+                    logging.error(f"Error storing data: {e}")
+            else:
+                self.transport.write(b"Error: Incorrect data format\n")
+                logging.error("Received data in incorrect format")
+
+    def connectionLost(self, reason):
+        logging.info(f"Connection lost: {reason}")
 
 class DataReceiverFactory(protocol.Factory):
     def buildProtocol(self, addr):
