@@ -27,9 +27,9 @@ def send_email(pdf_path, recipients, report_date):
 
     try:
         with smtplib.SMTP(smtp_host, smtp_port) as smtp:
-            smtp.ehlo()  # Can be omitted
+            smtp.ehlo() 
             smtp.starttls()
-            smtp.ehlo()  # Can be omitted
+            smtp.ehlo()
             smtp.login(from_email, password)
             smtp.sendmail(from_email, recipients, msg.as_string())
         logging.info("Email sent successfully.")
