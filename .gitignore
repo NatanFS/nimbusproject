@@ -139,3 +139,5 @@ GitHub.sublime-settings
 .DS_Store
 
 *.db
+
+/reports
