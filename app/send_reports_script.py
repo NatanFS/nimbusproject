@@ -69,6 +69,9 @@ def main():
             logging.error("No client data found for the provided phone numbers.")
             return
         
+        reports_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'reports')
+        os.makedirs(reports_dir, exist_ok=True)
+        
         for client in client_data:
             client_name = client.name
             report_date = args.date
@@ -76,11 +79,12 @@ def main():
             data = process_raw_file(args.raw)
             logging.info("Raw file processed successfully.")
             
-            pdf_buffer = generate_report_pdf(data, client_name, report_date)
+            pdf_path = os.path.join(reports_dir, f"report_{client.phone}.pdf")
+            generate_report_pdf(data, client_name, report_date, pdf_path)
             logging.info(f"Report PDF generated successfully for {client_name}.")
             
             if args.send_email:
-                send_email(pdf_buffer, [client.email], report_date)
+                send_email(pdf_path, [client.email], report_date)
     except Exception as e:
         logging.error(f"Error during script execution: {e}")
     finally:

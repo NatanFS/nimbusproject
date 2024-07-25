@@ -4,7 +4,6 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib import colors
 import logging
-from io import BytesIO
 
 from app.utils import format_date
 
@@ -38,9 +37,8 @@ def header(canvas, doc, client_name, report_date):
     canvas.drawString(right_margin_position + date_confection_width + 4, 780, report_date)
     canvas.restoreState()
 
-def generate_report_pdf(data, client_name, report_date):
-    buffer = BytesIO()
-    doc = SimpleDocTemplate(buffer, pagesize=A4)
+def generate_report_pdf(data, client_name, report_date, pdf_path):
+    doc = SimpleDocTemplate(pdf_path, pagesize=A4)
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='Centered', alignment=TA_CENTER, fontSize=12, spaceAfter=20))
     styles.add(ParagraphStyle(name='Justify', alignment=TA_LEFT, fontSize=10, leading=12, spaceAfter=12))
@@ -98,6 +96,4 @@ def generate_report_pdf(data, client_name, report_date):
             content.append(Paragraph(forecast, styles['Justify']))
 
     doc.build(content, onFirstPage=lambda canvas, doc: header(canvas, doc, client_name, report_date), onLaterPages=lambda canvas, doc: header(canvas, doc, client_name, report_date))
-    buffer.seek(0)
-    logging.info("PDF generated in memory")
-    return buffer
+    logging.info(f"PDF generated at {pdf_path}")
