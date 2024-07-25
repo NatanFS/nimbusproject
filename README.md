@@ -98,7 +98,7 @@ Para testar a geração dos relatórios, adicionei três aquivos `raw.json`, `ra
 Para gerar e enviar relatórios, utilize o script `app/send_reports_script.py``. Exemplo de uso:
 
 ```bash
-python app/send_reports_script.py --phones "84999139194,84999139195" --date "2024-01-01T12:00" --raw "path/to/raw.json" --send_email
+python app/send_reports_script.py --phones "84999139194,84999139195" --date "2024-01-01T12:00" --raw "raw.json" --send_email
 ```
 
 Caso não deseje enviar o relatório por e-mail, remova a flag `--send_email`.
