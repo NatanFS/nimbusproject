@@ -5,10 +5,10 @@ Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos 
 ## Funcionalidades
 
 - Recepção de dados meteorológicos via TCP
-- Armazenamento de dados de clientes e relatórios meteorológicos no banco de dados
+- Armazenamento de dados de clientes no banco de dados
 - Geração de relatórios meteorológicos em formato PDF
 - Envio de relatórios por e-mail
-- Suporte para arquivos de dados nos formatos JSON, CSV e TXT
+- Suporte para leitura de arquivos de dados meteorológicos nos formatos JSON, CSV e TXT
 
 ## Tecnologias Utilizadas
 
