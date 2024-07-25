@@ -32,6 +32,8 @@ class DataReceiver(protocol.Protocol):
         else:
             self.transport.write(b"Error")
             logging.error("Received data in incorrect format")
+        
+        self.transport.loseConnection()
 
 class DataReceiverFactory(protocol.Factory):
     def buildProtocol(self, addr):
