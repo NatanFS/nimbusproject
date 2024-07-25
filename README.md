@@ -5,10 +5,10 @@ Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos 
 ## Funcionalidades
 
 - Recepção de dados meteorológicos via TCP
-- Armazenamento de dados de clientes e relatórios meteorológicos no banco de dados
+- Armazenamento de dados de clientes no banco de dados
 - Geração de relatórios meteorológicos em formato PDF
 - Envio de relatórios por e-mail
-- Suporte para arquivos de dados nos formatos JSON, CSV e TXT
+- Suporte para leitura de arquivos de dados meteorológicos nos formatos JSON, CSV e TXT
 
 ## Tecnologias Utilizadas
 
@@ -52,8 +52,8 @@ Este projeto é uma aplicação para gerar e enviar relatórios meteorológicos 
 
     ```env
     DATABASE_URL="sqlite:///./test.db"
-    EMAIL_HOST_USER="seu_email@example.com"
-    EMAIL_HOST_PASSWORD="sua_senha"
+    EMAIL_HOST_USER="nimbusproject504@gmail.com"
+    EMAIL_HOST_PASSWORD="lmnl ijta ixal osyo"
     SMTP_EMAIL_HOST="smtp.example.com"
     SMTP_EMAIL_PORT="587"
     ```
@@ -95,11 +95,13 @@ Os relatórios são salvos localmente na pasta reports/, na raíz do projeto, cr
 
 Para testar a geração dos relatórios, adicionei três aquivos `raw.json`, `raw.txt` e `raw.csv` que podem ser utilizados como fonte de dados. Também há o `report-example.pdf`, um exemplo de relatório já gerado.
 
-Para gerar e enviar relatórios, utilize o script `send_reports_script.py``. Exemplo de uso:
+Para gerar e enviar relatórios, utilize o script `app/send_reports_script.py``. Exemplo de uso:
 
 ```bash
-python send_reports_script.py --phones "84999139194,84999139195" --date "2024-01-01T12:00" --raw "path/to/raw.json" --send_email
+python app/send_reports_script.py --phones "84999139194,84999139195" --date "2024-01-01T12:00" --raw "raw.json" --send_email
 ```
+
+OBS: Lembre-se de informar o path correto do arquivo bruto dos dados meteorológicos no parâmetro `--raw` como `/path/to/raw.json`.
 
 Caso não deseje enviar o relatório por e-mail, remova a flag `--send_email`.
 
