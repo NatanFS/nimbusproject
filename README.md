@@ -101,6 +101,8 @@ Para gerar e enviar relatórios, utilize o script `app/send_reports_script.py``.
 python app/send_reports_script.py --phones "84999139194,84999139195" --date "2024-01-01T12:00" --raw "raw.json" --send_email
 ```
 
+OBS: Lembre-se de informar o path correto do arquivo bruto dos dados meteorológicos no parâmetro `--raw` como `/path/to/raw.json`.
+
 Caso não deseje enviar o relatório por e-mail, remova a flag `--send_email`.
 
 ## Logs das aplicações
