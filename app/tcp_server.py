@@ -27,7 +27,7 @@ class DataReceiver(protocol.Protocol):
                 db.close()
                 logging.info(f"Received and stored data: {name}, {email}, {phone}, {age}")
             except Exception as e:
-                self.transport.write(b"Error: " + str(e).encode('utf-8'))
+                self.transport.write(b"Erro ao adicionar cliente")
                 logging.error(f"Error storing data: {e}")
         else:
             self.transport.write(b"Error")
