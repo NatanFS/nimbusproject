@@ -81,10 +81,28 @@ O servidor TCP será inicializado automaticamente na porta 5784, junto com o ser
 
 ### Cadastro de Clientes via TCP 
 
-Para cadastrar clientes via TCP, siga o exemplo de comando: 
+Para cadastrar clientes via TCP, siga os seguintes passos: 
+
+
+Estabeleça a conexão TCP: 
 
 ```bash
-echo "joao,email@gmail.com,84999999999,25" | nc 127.0.0.1 5784  
+nc 127.0.0.1 5784
+```
+
+Cadastre clientes usando strings no formato "Nome,email,telefone,idade".
+
+```bash
+"joao,email@gmail.com,84999999991,25"
+Ok
+"maria,email2@gmail.com,84999999992,26"
+Ok
+```
+
+Encerre a conexão TCP com o comando `quit`.
+
+```bash
+quit
 ```
 
 A string deve seguir o padrão "Nome,email,telefone,idade".
